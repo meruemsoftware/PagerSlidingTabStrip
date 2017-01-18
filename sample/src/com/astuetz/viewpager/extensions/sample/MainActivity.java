@@ -63,6 +63,10 @@ public class MainActivity extends FragmentActivity {
 		pager.setPageMargin(pageMargin);
 
 		tabs.setViewPager(pager);
+		tabs.setTabEnabled(2,false);
+		tabs.setTabEnabled(0,false);
+		tabs.setTabEnabled(7,false);
+		tabs.setTextSize(50);
 
 		changeColor(currentColor);
 	}

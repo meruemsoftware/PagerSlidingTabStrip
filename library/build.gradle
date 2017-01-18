@@ -1,4 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+group = 'hu.meruem'
+version = '1.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://c:\\Users\\Tamas Turcsek\\.m2\\repository")
+        }
+    }
+}
 
 dependencies {
     compile 'com.android.support:support-v4:25.1.0'

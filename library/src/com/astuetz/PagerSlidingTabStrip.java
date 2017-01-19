@@ -40,7 +40,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import com.astuetz.pagerslidingtabstrip.R;
 
@@ -79,6 +81,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int underlineColor = ContextCompat.getColor(getContext(), R.color.highlightText);
     private int dividerColor = ContextCompat.getColor(getContext(), android.R.color.transparent);
     private int backgroundHighlightColor = ContextCompat.getColor(getContext(), R.color.highlightBackground);
+
+    Map<String, Boolean> tabStates = new HashMap<>();
 
     public void setBackgroundHighlightColor(int backgroundHighlightColor) {
         this.backgroundHighlightColor = backgroundHighlightColor;
@@ -209,7 +213,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     }
 
     public void notifyDataSetChanged() {
-
+        tabStates.clear();
+        for(int i = 0 ; i < tabsContainer.getChildCount(); i++) {
+                tabStates.put(pager.getAdapter().getPageTitle(i).toString(), tabsContainer.getChildAt(i).isEnabled());
+        }
         tabsContainer.removeAllViews();
 
         tabCount = pager.getAdapter().getCount();
@@ -252,6 +259,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tab.setText(title);
         tab.setGravity(Gravity.CENTER);
         tab.setSingleLine();
+        tab.setEnabled(tabStates.containsKey(title) && pager.getAdapter().getPageTitle(position) != null ? tabStates.get(title) :true);
 
         addTab(position, tab);
     }

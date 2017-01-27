@@ -7,7 +7,7 @@ version = '1.0'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file://c:\\Users\\Tamas Turcsek\\.m2\\repository")
+//TODO            repository(url: "file://path_to_your_local_maven_repo")
         }
     }
 }
